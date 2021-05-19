@@ -89,3 +89,21 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-docker-image:
+          context: docker
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - docker-publish-image:
+          context: docker
+          requires:
+           - build-app
+           - test-app
+           - build-docker-image
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
