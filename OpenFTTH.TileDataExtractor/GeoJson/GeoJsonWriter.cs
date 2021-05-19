@@ -10,21 +10,9 @@ namespace OpenFTTH.TileDataExtractor.GeoJson
     {
         private readonly string _fileName;
 
-        private bool _first = true;
-     
         public GeoJsonWriter(string fileName)
         {
             _fileName = fileName;
-        }
-
-        public void Begin()
-        {
-            using StreamWriter geoJsonFile = new StreamWriter(_fileName, false, Encoding.UTF8);
-
-            // Start geojson feature collection
-            geoJsonFile.WriteLine("{ \"type\": \"FeatureCollection\", \"features\": [");
-
-            geoJsonFile.Close();
         }
 
         public void Write(IEnumerable<GeoJsonObject> objects)
@@ -33,15 +21,9 @@ namespace OpenFTTH.TileDataExtractor.GeoJson
 
             foreach (var obj in objects)
             {
-                if (!_first)
-                    geoJsonFile.Write(",");
-
                 string json = CreateFeatureJsonObject(obj).ToString(Formatting.None) + "\r\n";
 
                 geoJsonFile.Write(json);
-
-                if (_first)
-                    _first = false;
             }
 
             geoJsonFile.Close();
@@ -81,16 +63,6 @@ namespace OpenFTTH.TileDataExtractor.GeoJson
             }
 
             return jsonProperties;
-        }
-
-        public void End()
-        {
-            using StreamWriter geoJsonFile = new StreamWriter(_fileName, true, Encoding.UTF8);
-
-            // End geojson feature collection
-            geoJsonFile.WriteLine(" ] }");
-
-            geoJsonFile.Close();
         }
     }
 }

@@ -28,7 +28,6 @@ namespace OpenFTTH.TileDataExtractor
             };
 
             var writer = new GeoJsonWriter(outputFileName);
-            writer.Begin();
 
             foreach (var layer in layers)
             {
@@ -37,8 +36,6 @@ namespace OpenFTTH.TileDataExtractor
                 writer.Write(layerObjects);
                 Log.Information($"{layerObjects.Count} {layer.Name} objects written to geojson file.");
             }
-
-            writer.End();
         }
     }
 }
