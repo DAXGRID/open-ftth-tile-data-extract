@@ -95,7 +95,7 @@ namespace OpenFTTH.TileDataExtractor
 
         private int MaxZoomLevel(string kind, string function)
         {
-            return 22;
+            return 17;
         }
 
         private IDbConnection GetConnection()

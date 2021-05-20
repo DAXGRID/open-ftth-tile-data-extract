@@ -51,7 +51,7 @@ namespace OpenFTTH.TileDataExtractor
                 var method = dbReader.IsDBNull(3) ? null : dbReader[3].ToString();
                 var status = dbReader.IsDBNull(4) ? null : dbReader[4].ToString();
 
-                var jsonObj = new GeoJsonObject(_counter.GetNext(), Name, geojson, 12, 22);
+                var jsonObj = new GeoJsonObject(_counter.GetNext(), Name, geojson, 12, 17);
 
                 jsonObj.AddProperty("mrid", mrid);
                 jsonObj.AddProperty("kind", kind);
