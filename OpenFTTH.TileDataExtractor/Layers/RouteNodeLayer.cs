@@ -52,6 +52,7 @@ namespace OpenFTTH.TileDataExtractor
                   where
                     coord is not null and
                     marked_to_be_deleted = false
+                  order by mrid
                 ";
 
             using var dbReader = dbCmd.ExecuteReader();
