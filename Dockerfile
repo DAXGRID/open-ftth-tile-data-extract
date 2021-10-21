@@ -15,5 +15,7 @@ RUN dotnet publish -c Release -o out --packages ./packages
 FROM mcr.microsoft.com/dotnet/runtime:5.0
 WORKDIR /app
 
+RUN apt-get update && apt-get install curl -y
+
 COPY --from=build-env /app/OpenFTTH.TileDataExtractor/out .
 ENTRYPOINT ["dotnet", "OpenFTTH.TileDataExtractor.dll"]
